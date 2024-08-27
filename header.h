@@ -1,0 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
+/*   Updated: 2024/08/27 09:57:32 by wasmar           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef HEADER_H
+# define HEADER_H
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+typedef struct t_stack
+{
+    int number;
+    struct t_stack *next;
+    struct t_stack *prev; 
+}t_stack;
+
+//t_stack
+t_stack *create_new_node(int number);
+t_stack *create_list_a(int *input, int count);
+
+
+///////////////////////////////
+
+//void
+void free_linked_list(t_stack *node);
+void return_pointer_to_first(t_stack **node);
+void print_stack(t_stack *head);
+
+void swap(t_stack **head);
+void rotate(t_stack **head);
+void reverse_rotate(t_stack **head);
+void push(t_stack **send_form , t_stack **send_to);
+/////////////////////
+
+//int
+
+int *create_array_with_input(char **input,int count);
+int	ft_atoi(char *nptr);
+///////////////////////
+
+void sa(t_stack **head,int flag);
+void pa(t_stack **head_a, t_stack **head_b);
+void ra(t_stack **head,int flag);
+void rra(t_stack **head,int flag);
+void rrb(t_stack **head,int flag);
+void rb(t_stack **head,int flag);
+void sb(t_stack **head,int flag);
+void pb(t_stack **head_a, t_stack **head_b);
+void rr(t_stack **head_a, t_stack **head_b);
+void rrr(t_stack **head_a,t_stack **head_b);
+#endif
