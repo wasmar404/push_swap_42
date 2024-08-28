@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/08/28 09:07:41 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/08/28 12:09:45 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void rotate(t_stack **head);
 void reverse_rotate(t_stack **head);
 void push(t_stack **send_form , t_stack **send_to);
 /////////////////////
-
+t_stack *find_cheapest_node(t_stack *head);
 //int
 
 int *create_array_with_input(char **input,int count);

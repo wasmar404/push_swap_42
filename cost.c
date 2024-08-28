@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 11:29:45 by wasmar            #+#    #+#             */
-/*   Updated: 2024/08/28 09:08:31 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/08/28 12:09:22 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,22 @@ void add_cost_of_a_and_b(t_stack *stack_a, t_stack *stack_b)
         }
         stack_a = stack_a->next;  // Move to the next node in stack_a
     }
+}
+
+t_stack *find_cheapest_node(t_stack *head)
+{
+    if (head == NULL) return NULL;  
+
+    t_stack *cheapest = head;
+    t_stack *current = head;
+
+    while (current != NULL)
+    {
+        if (cheapest->cost > current->cost)
+        {
+            cheapest = current;
+        }
+        current = current->next;
+    }
+    return cheapest;
 }
