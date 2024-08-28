@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/08/28 16:33:36 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/08/28 17:49:40 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int main(int argc, char **argv)
         add_cost_of_a_and_b(stack_a,stack_b);
         t_stack *cheap = find_cheapest_node(stack_a);
         if(cheap->median == 1 && cheap->target->median == 1)
-        {
+        {  
             rotate_a_and_b(&stack_a,&stack_b,cheap);
         }
         else if(cheap->median == 0 && cheap->target->median == 0)
@@ -130,7 +130,7 @@ int main(int argc, char **argv)
         pa(&stack_b,&stack_a);
     }
     
-   // print_stack(stack_a);
+   print_stack(stack_a);
     free_linked_list(stack_a);
    free(data);
 }
