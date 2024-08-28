@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/08/27 09:57:32 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/08/28 09:07:41 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,23 @@
 typedef struct t_stack
 {
     int number;
+    int median;
+    int cost;
+    int position;
     struct t_stack *next;
-    struct t_stack *prev; 
+    struct t_stack *prev;
+    struct t_stack *target;
 }t_stack;
 
 //t_stack
 t_stack *create_new_node(int number);
 t_stack *create_list_a(int *input, int count);
-
-
+void add_cost_of_a_and_b(t_stack *stack_a, t_stack *stack_b);
+int count_list(t_stack *temp);
 ///////////////////////////////
-
-//void
+void find_cost(t_stack *head);
+//voidlinked_list.c
+void set_target_of_a(t_stack *stack_a, t_stack *stack_b);
 void free_linked_list(t_stack *node);
 void return_pointer_to_first(t_stack **node);
 void print_stack(t_stack *head);

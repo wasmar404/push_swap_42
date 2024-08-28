@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:36:27 by schaaban          #+#    #+#             */
-/*   Updated: 2024/08/27 09:42:56 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/08/27 10:19:11 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,24 @@ void reverse_rotate(t_stack **head)
 }
 
 
-void push(t_stack **send_form , t_stack **send_to)
+void push(t_stack **send_form, t_stack **send_to)
 {
-t_stack *temp;
-    temp = (*send_form);
-    if((*send_form) == NULL)
-        return ;
-    (*send_form) = (*send_form) -> next;
-    (*send_form) -> prev = NULL;
+    if (*send_form == NULL)
+        return; 
+    t_stack *temp = *send_form;
+    *send_form = (*send_form)->next;
+    if (*send_form != NULL)
+    {
+        (*send_form)->prev = NULL;
+    }
     temp->next = *send_to;
-    temp -> prev = NULL;
-    (*send_form) = temp;
+    temp->prev = NULL;
+    if (*send_to != NULL)
+    {
+        (*send_to)->prev = temp;
+    }
+    *send_to = temp;
 }
+
 
 
