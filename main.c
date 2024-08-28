@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/08/28 12:22:46 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/08/28 12:29:23 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,17 @@ void reverse_rotate_a_and_b(t_stack **stack_a,t_stack **stack_b,t_stack *cheapes
 
 	
 }
+t_stack *find_max_pointer(t_stack *head)
+{
+    t_stack *max = head;
+    while(head != NULL)
+    {
+        if(max->number < head ->number)
+            max = head;
+        head = head->next;
+    }
+    return(max);
+}
 int main(int argc, char **argv)
 {
     int *data = create_array_with_input(argv,argc);
@@ -104,6 +115,15 @@ int main(int argc, char **argv)
     put_node_on_top_b(&stack_b,cheap);
     pb(&stack_a,&stack_b);
     }
+    t_stack *max = find_max_pointer(stack_b);
+    set_pos_and_median(stack_b);
+    while (max ->position != 1)
+    {
+        rrb(&stack_b,1);
+            set_pos_and_median(stack_b);
+
+    }
+    
     print_stack(stack_b);
     free_linked_list(stack_a);
    free(data);
