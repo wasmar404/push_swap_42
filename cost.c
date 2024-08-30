@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 11:29:45 by wasmar            #+#    #+#             */
-/*   Updated: 2024/08/28 12:09:22 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/08/30 06:17:14 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@ void find_cost(t_stack *head)
 	}
 }
 
-void add_cost_of_a_and_b(t_stack *stack_a, t_stack *stack_b)
-{
+void add_cost_of_a_and_b(t_stack *stack_a, t_stack **stack_b)
+{ t_stack *temp;
     while (stack_a != NULL)
     {
-        t_stack *temp = stack_b;
+        temp = *stack_b;
         while (temp != NULL)
         {
             if (stack_a->target->number == temp->number)
             {
                 stack_a->cost += temp->cost;
-                break;  // Exit inner loop as soon as a match is found
+                break;  
             }
             temp = temp->next;
         }
-        stack_a = stack_a->next;  // Move to the next node in stack_a
+        stack_a = stack_a->next;  
     }
 }
 
