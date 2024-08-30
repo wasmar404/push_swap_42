@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/08/30 07:36:05 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/08/30 09:27:42 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,79 +121,54 @@ t_stack *find_max_pointer(t_stack *head)
     }
     return(max);
 }
-
+void sort_h(t_stack **stack_a, t_stack **stack_b)
+{
+            set_pos_and_median(*stack_a);
+        set_pos_and_median(*stack_b);
+        set_target_of_a(*stack_a,*stack_b);
+        find_cost(*stack_a);
+        find_cost(*stack_b);
+        add_cost_of_a_and_b(*stack_a,stack_b);
+}
+void sort_max(t_stack **stack_b)
+{
+        t_stack *max = find_max_pointer(*stack_b);
+    set_pos_and_median(*stack_b);
+    while (max ->position != 1)
+    {
+        if(max ->median == 1)
+            rb(stack_b,1);
+        else if(max ->median == 0)
+            rrb(stack_b,1);
+        set_pos_and_median(*stack_b);
+    }
+}
+void sort(t_stack *stack_a, t_stack *stack_b)
+{
+    pb(&stack_a,&stack_b);
+    pb(&stack_a,&stack_b);
+    while (count_list(stack_a) > 0)
+    {
+        sort_h(&stack_a,&stack_b);
+        t_stack *cheap = find_cheapest_node(stack_a);
+        if(cheap->median == 1 && cheap->target->median == 1) 
+            rotate_a_and_b(&stack_a,&stack_b,cheap);
+        else if(cheap->median == 0 && cheap->target->median == 0)
+            reverse_rotate_a_and_b(&stack_a,&stack_b,cheap);
+        put_node_on_top_a(&stack_a,cheap);
+        put_node_on_top_b(&stack_b,cheap);
+        pb(&stack_a,&stack_b);
+    }
+    sort_max(&stack_b);
+    while (stack_b != NULL)
+        pa(&stack_b,&stack_a);
+    free_linked_list(stack_a);
+}
 int main(int argc, char **argv)
 {
     int *data = create_array_with_input(argv,argc);
     t_stack *stack_a =  create_list_a(data,argc);
     t_stack *stack_b = NULL;
-    pb(&stack_a,&stack_b);
-    pb(&stack_a,&stack_b);
-    //pb(&stack_a,&stack_b);
-    // pb(&stack_a,&stack_b);
-        //     set_pos_and_median(stack_a);
-        // set_pos_and_median(stack_b);
-        // set_target_of_a(stack_a,stack_b);
-        // find_cost(stack_a);
-        // find_cost(stack_b);
-        //  add_cost_of_a_and_b(stack_a,&stack_b);
-        //print_stack(stack_b);
-        // while(stack_a)
-        // {
-        //     printf("%d",stack_a->cost);
-        //     stack_a= stack_a ->next;
-        // }
-   // int count = count_list(stack_a);
-    while (count_list(stack_a) > 0)
-    {
-        set_pos_and_median(stack_a);
-        set_pos_and_median(stack_b);
-        set_target_of_a(stack_a,stack_b);
-        find_cost(stack_a);
-        find_cost(stack_b);
-        add_cost_of_a_and_b(stack_a,&stack_b);
-        t_stack *cheap = find_cheapest_node(stack_a);
-        if(cheap->median == 1 && cheap->target->median == 1)
-        {  
-            rotate_a_and_b(&stack_a,&stack_b,cheap);
-        }
-        else if(cheap->median == 0 && cheap->target->median == 0)
-        {
-            reverse_rotate_a_and_b(&stack_a,&stack_b,cheap);
-        }
-        // else if (cheap->median == 0 && cheap->target->median == 1)
-        // {
-        //     rra(&stack_a, 1);
-        //     rb(&stack_b, 1);
-        // }
-        // else
-        // {
-        //     ra(&stack_a, 1);
-        //     rrb(&stack_b, 1);
-        // }
-        // printf("%d this is the median and the number %d \n",cheap->median,stack_b)
-        put_node_on_top_a(&stack_a,cheap);
-        // printf("%d is the cheapest's target", cheap->target->number);
-        put_node_on_top_b(&stack_b,cheap);
-        pb(&stack_a,&stack_b);
-    }
-    t_stack *max = find_max_pointer(stack_b);
-    set_pos_and_median(stack_b);
-    while (max ->position != 1)
-    {
-        if(max ->median == 1)
-            rb(&stack_b,1);
-        else if(max ->median == 0)
-            rrb(&stack_b,1);
-        set_pos_and_median(stack_b);
-
-    }
-    while (stack_b != NULL)
-    {
-        pa(&stack_b,&stack_a);
-    }
-    
-//    print_stack(stack_a);
-    free_linked_list(stack_a);
+    sort(stack_a,stack_b);
    free(data);
 }
