@@ -6,16 +6,16 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:31:59 by wasmar            #+#    #+#             */
-/*   Updated: 2024/08/26 15:36:47 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/01 13:11:11 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
-int	ft_atoi(char *nptr)
+long	ft_atoi(char *nptr)
 {
-	int	i;
-	int	sign;
-	int	result;
+	long	i;
+	long	sign;
+	long	result;
 
 	i = 0;
 	sign = 1;

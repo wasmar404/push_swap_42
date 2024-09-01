@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/08/30 09:27:42 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/01 13:12:09 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,6 @@ void reverse_rotate_a_and_b(t_stack **stack_a,t_stack **stack_b,t_stack *cheapes
 }
  void put_node_on_top_b(t_stack **stack_b,t_stack *cheapest)
 {
-    // int x = count_list(*stack_b);
-    // if(x % 2 != 0)
-    // {
 	while (cheapest ->target ->position != 1)
 	{
 		if(cheapest->target->median == 1)
@@ -91,21 +88,7 @@ void reverse_rotate_a_and_b(t_stack **stack_a,t_stack **stack_b,t_stack *cheapes
 		else
 			rrb(stack_b,1);
         set_pos_and_median(*stack_b);
-	}
-    // }
-    // else{
-	// while (cheapest ->target ->position != 1)
-	// {
-	// 	if(cheapest ->target ->position <= x/2)
-	// 	{
-	// 		rb(stack_b,1);
-	// 	}
-	// 	else
-	// 		rrb(stack_b,1);
-    //     set_pos_and_median(*stack_b);
-	// }
-
-        
+	}        
     }
 
 	
@@ -166,7 +149,7 @@ void sort(t_stack *stack_a, t_stack *stack_b)
 }
 int main(int argc, char **argv)
 {
-    int *data = create_array_with_input(argv,argc);
+    long *data = create_array_with_input(argv,argc);
     t_stack *stack_a =  create_list_a(data,argc);
     t_stack *stack_b = NULL;
     sort(stack_a,stack_b);

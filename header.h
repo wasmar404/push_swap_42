@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/08/30 06:10:47 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/01 13:13:31 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct t_stack
 
 //t_stack
 t_stack *create_new_node(int number);
-t_stack *create_list_a(int *input, int count);
+t_stack *create_list_a(long *input, int count);
 void add_cost_of_a_and_b(t_stack *stack_a, t_stack **stack_b);
 int count_list(t_stack *temp);
 ///////////////////////////////
@@ -47,8 +47,8 @@ void push(t_stack **send_form , t_stack **send_to);
 t_stack *find_cheapest_node(t_stack *head);
 //int
 
-int *create_array_with_input(char **input,int count);
-int	ft_atoi(char *nptr);
+long *create_array_with_input(char **input,int count);
+long	ft_atoi(char *nptr);
 ///////////////////////
 
 void sa(t_stack **head,int flag);
