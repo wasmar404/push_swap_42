@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/01 13:12:09 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/03 14:26:17 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,8 @@ void reverse_rotate_a_and_b(t_stack **stack_a,t_stack **stack_b,t_stack *cheapes
 			rrb(stack_b,1);
         set_pos_and_median(*stack_b);
 	}        
-    }
-
-	
-
+}
+    
 t_stack *find_max_pointer(t_stack *head)
 {
     t_stack *max = head;
@@ -148,8 +146,17 @@ void sort(t_stack *stack_a, t_stack *stack_b)
     free_linked_list(stack_a);
 }
 int main(int argc, char **argv)
-{
-    long *data = create_array_with_input(argv,argc);
+{   
+    int *data;
+    bool error;
+    data = malloc((argc-1)*sizeof(int));
+     error = create_array_with_input(argv,argc,&data);
+     if(error == false)
+     {
+        write(2,"ERROR\n",6);
+        free(data);
+        exit(0);
+     }
     t_stack *stack_a =  create_list_a(data,argc);
     t_stack *stack_b = NULL;
     sort(stack_a,stack_b);

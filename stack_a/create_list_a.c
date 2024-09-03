@@ -6,13 +6,13 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:13:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/01 13:12:24 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/08/26 15:48:24 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-t_stack *create_list_a(long *input, int count)
+t_stack *create_list_a(int *input, int count)
 {
     t_stack *first_node;
     t_stack *new_node;

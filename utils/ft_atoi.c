@@ -6,20 +6,20 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:31:59 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/01 13:11:11 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/03 14:21:39 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
-long	ft_atoi(char *nptr)
+int	ft_atoi(char *nptr, int *ftatoi)
 {
-	long	i;
-	long	sign;
-	long	result;
+	int	i;
+	int	sign;
+
 
 	i = 0;
 	sign = 1;
-	result = 0;
+	long long result = 0;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
 	{
 		i ++;
@@ -33,7 +33,14 @@ long	ft_atoi(char *nptr)
 	while (nptr[i] != '\0' && (nptr[i] >= 48 && nptr[i] <= 57))
 	{
 		result = result * 10 + nptr[i] - '0';
+		if(result  < -2147483648 || result > 2147483647 )
+		{
+			return (0);
+		}
+		
 		i ++;
 	}
-	return (result * sign);
+	*ftatoi = (int)result;
+	return (1);
+	
 }

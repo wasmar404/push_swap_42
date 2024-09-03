@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/01 13:13:31 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/03 14:13:29 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdbool.h>
 typedef struct t_stack
 {
     int number;
@@ -28,7 +29,7 @@ typedef struct t_stack
 
 //t_stack
 t_stack *create_new_node(int number);
-t_stack *create_list_a(long *input, int count);
+t_stack *create_list_a(int *input, int count);
 void add_cost_of_a_and_b(t_stack *stack_a, t_stack **stack_b);
 int count_list(t_stack *temp);
 ///////////////////////////////
@@ -47,8 +48,8 @@ void push(t_stack **send_form , t_stack **send_to);
 t_stack *find_cheapest_node(t_stack *head);
 //int
 
-long *create_array_with_input(char **input,int count);
-long	ft_atoi(char *nptr);
+bool create_array_with_input(char **input,int count,int **data);
+int	ft_atoi(char *nptr,int *ftatoi);
 ///////////////////////
 
 void sa(t_stack **head,int flag);
