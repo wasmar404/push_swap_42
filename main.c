@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/03 22:18:40 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/03 22:26:57 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ bool  check_if_sorted(t_stack *head)
     return(true);
 }
 #include <stdlib.h>
-
+void check_numeric(char **data,int flag);
 bool split_argument(char *argv, t_input *input, int **data)
 {
     char *charset = " \t\n\v\f\r";
@@ -167,6 +167,7 @@ bool split_argument(char *argv, t_input *input, int **data)
     int error;
     int ftatoi;
     char **split = ft_split(argv, charset);
+    check_numeric(split,0);
     if (!split)
         return NULL;
     while (split[i])
@@ -213,6 +214,27 @@ bool check_dup(t_stack *head)
     }
     return true;
 }
+void check_numeric(char **data,int flag) {
+    
+    int i = 0;
+    int j;
+    if(flag == 1)
+    {
+        i =1;
+    }
+    while (data[i]) {
+        j = 0;
+        while (data[i][j]) {
+            if ((data[i][j] < '0' || data[i][j] > '9') && data[i][j] != '-') {
+                
+                write(2,"Error\n",5);
+                exit(0);
+            }
+            j++;
+        }
+        i++;
+    }
+}
 int main(int argc, char **argv)
 {   
     int *data;
@@ -246,6 +268,7 @@ int main(int argc, char **argv)
     {
         data = malloc((argc-1)*sizeof(int));
         error = create_array_with_input(argv,argc,&data);
+        check_numeric(argv,1);
         if(error == false)
         {
             free(data);
