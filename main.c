@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/03 22:48:42 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/03 23:25:13 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,10 @@ bool split_argument(char *argv, t_input *input, int **data)
     int error;
     int ftatoi;
     char **split = ft_split(argv, charset);
+    if(split == NULL)
+    {
+        return(false);
+    }
     check_numeric(split,0);
     if (!split)
         return NULL;
@@ -242,7 +246,8 @@ int main(int argc, char **argv)
     t_stack *stack_a;
     t_stack *stack_b = NULL;
     t_input *input;
-
+    if(argc != 1)
+    {
     if(argc == 2)
     {   
         input = malloc(sizeof(t_input));
@@ -253,27 +258,27 @@ int main(int argc, char **argv)
             write(2,"Error1",6);
             exit(0);
         }
-        stack_a = create_list_a(data,input->input_count,0);
-        bool error3 = check_if_sorted(stack_a);
-        if(error3 == true)
-        {
-            free(input);
-            free(data);
-            free_linked_list(stack_a);
-            write(2,"Error2",6);
-            exit(0);
-        }
-        bool error1 = check_dup (stack_a);
-        if(error1 == false)
-        {
-            free(input);
-            free(data);
-            free_linked_list(stack_a);
-            write(2,"Error11",7);
-            exit(0);
-        }
+        // stack_a = create_list_a(data,input->input_count,0);
+        // bool error3 = check_if_sorted(stack_a);
+        // if(error3 == true)
+        // {
+        //     free(input);
+        //     free(data);
+        //     free_linked_list(stack_a);
+        //     write(2,"Error2",6);
+        //     exit(0);
+        // }
+        // bool error1 = check_dup (stack_a);
+        // if(error1 == false)
+        // {
+        //     free(input);
+        //     free(data);
+        //     free_linked_list(stack_a);
+        //     write(2,"Error11",7);
+        //     exit(0);
+        // }
     }
-    else
+    else if( argc >2)
     {
         data = malloc((argc-1)*sizeof(int));
         error = create_array_with_input(argv,argc,&data);
@@ -304,6 +309,11 @@ int main(int argc, char **argv)
             exit(0);
         }
     }
-     sort(stack_a,stack_b);
+    //  sort(stack_a,stack_b);
     free(data);
+    }
+    else
+    {
+        write(1,"error",5);
+    }
 }

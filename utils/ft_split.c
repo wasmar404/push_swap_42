@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:29:40 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/03 20:29:59 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/03 23:24:35 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ char	**ft_split(char *str, char *charset)
 	int		words;
 
 	words = count_words(str, charset);
+    if(words == 0)
+    {
+        return NULL;
+    }
 	split = (char **)malloc(sizeof(char *) * (words + 1));
 	split[words] = 0;
 	write_split(split, str, charset);
