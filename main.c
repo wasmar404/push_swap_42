@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/03 14:26:17 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/03 21:51:50 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,20 +145,90 @@ void sort(t_stack *stack_a, t_stack *stack_b)
         pa(&stack_b,&stack_a);
     free_linked_list(stack_a);
 }
+bool  check_if_sorted(t_stack *head)
+{
+    while(head->next != NULL)
+    {
+        if(head->number > head->next->number)
+        {
+            return(false);
+        }
+        head = head ->next;
+    }
+    return(true);
+}
+#include <stdlib.h>
+
+bool split_argument(char *argv, t_input *input, int **data)
+{
+    char *charset = " \t\n\v\f\r";
+    int i = 0;
+
+    int error;
+    int ftatoi;
+    char **split = ft_split(argv, charset);
+    if (!split)
+        return NULL;
+    while (split[i])
+        i++;
+    *data = (int *)malloc(sizeof(int) * i);
+    if (!data)
+        return NULL;
+    i = 0;
+    while (split[i])
+    {
+        error = ft_atoi(split[i], &ftatoi);
+        if(error == 0)
+        {
+                for (int j = 0; split[j]; j++)
+        free(split[j]);
+    free(split);
+    free(*data);
+            return (false);
+        }
+        (*data)[i] = ftatoi;
+        i++;
+    }
+    input->input_count = i;
+        for (int j = 0; split[j]; j++)
+        free(split[j]);
+    free(split);
+    return (true);
+}
+
 int main(int argc, char **argv)
 {   
     int *data;
     bool error;
-    data = malloc((argc-1)*sizeof(int));
-     error = create_array_with_input(argv,argc,&data);
-     if(error == false)
-     {
-        write(2,"ERROR\n",6);
-        free(data);
-        exit(0);
-     }
-    t_stack *stack_a =  create_list_a(data,argc);
+    t_stack *stack_a;
     t_stack *stack_b = NULL;
-    sort(stack_a,stack_b);
-   free(data);
+    t_input *input;
+
+    if(argc == 2)
+    {   
+        input = malloc(sizeof(t_input));
+       error =   split_argument(argv[1],input,&data);
+         if(error == false)
+        {
+            free(input);
+            write(2,"Error1",6);
+            exit(0);
+        }
+        stack_a = create_list_a(data,input->input_count);
+    }
+    else
+    {
+        data = malloc((argc-1)*sizeof(int));
+        error = create_array_with_input(argv,argc,&data);
+        if(error == 0)
+        {
+            free(data);
+            write(2,"Error",5);
+            exit(0);
+        }
+       stack_a =  create_list_a(data,argc); 
+    }
+     sort(stack_a,stack_b);
+    free(input);
+    free(data);
 }

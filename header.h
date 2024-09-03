@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/03 14:13:29 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/03 20:36:59 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ typedef struct t_stack
     struct t_stack *prev;
     struct t_stack *target;
 }t_stack;
-
+typedef struct t_input
+{
+    int input_count;
+}t_input;
 //t_stack
 t_stack *create_new_node(int number);
 t_stack *create_list_a(int *input, int count);
@@ -51,7 +54,7 @@ t_stack *find_cheapest_node(t_stack *head);
 bool create_array_with_input(char **input,int count,int **data);
 int	ft_atoi(char *nptr,int *ftatoi);
 ///////////////////////
-
+char	**ft_split(char *str, char *charset);
 void sa(t_stack **head,int flag);
 void pa(t_stack **head_a, t_stack **head_b);
 void ra(t_stack **head,int flag);
