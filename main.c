@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/03 22:26:57 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/03 22:48:42 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,13 +254,22 @@ int main(int argc, char **argv)
             exit(0);
         }
         stack_a = create_list_a(data,input->input_count,0);
+        bool error3 = check_if_sorted(stack_a);
+        if(error3 == true)
+        {
+            free(input);
+            free(data);
+            free_linked_list(stack_a);
+            write(2,"Error2",6);
+            exit(0);
+        }
         bool error1 = check_dup (stack_a);
         if(error1 == false)
         {
             free(input);
             free(data);
             free_linked_list(stack_a);
-            write(2,"Error1",6);
+            write(2,"Error11",7);
             exit(0);
         }
     }
@@ -272,16 +281,26 @@ int main(int argc, char **argv)
         if(error == false)
         {
             free(data);
-            write(2,"Error",5);
+            write(2,"Error3",6);
             exit(0);
         }
-       stack_a =  create_list_a(data,argc,1); 
+       stack_a =  create_list_a(data,argc,1);
+       bool error2 = true; 
+         error2 = check_if_sorted(stack_a);
+        if(error2 == true)
+        {
+            free(input);
+            free(data);
+            free_linked_list(stack_a);
+            write(2,"Error1",6);
+            exit(0);
+        }
                bool error1 = check_dup (stack_a);
         if(error1 == false)
         {
             free(data);
             free_linked_list(stack_a);
-            write(2,"Error1",6);
+            write(2,"Error2",6);
             exit(0);
         }
     }
