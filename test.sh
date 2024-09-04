@@ -1,5 +1,5 @@
 #!/bin/bash
-gcc *.c utils/*.c stack_a/*.c stack_b/*.c
+# gcc *.c utils/*.c stack_a/*.c stack_b/*.c
 # ARG=7 6 5
 # ARG="7 6 5"
 # ARG="7" "6" "5"
@@ -22,7 +22,7 @@ gcc *.c utils/*.c stack_a/*.c stack_b/*.c
 # ARG="9" "6" "5 4"
 # ARG='Between 0 and 9 randomly sorted values chosen>'
 # ./a.out $ARG
-#  . /a.out $ARG | ./checker_linux $ARG
+#  ./a.out $ARG | ./checker_linux $ARG
 # ./a.out $ARG | ./checker_linux $ARG
 # valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./a.out $ARG
 # ./a.out $ARG | valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./checker $ARG

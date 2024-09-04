@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/04 21:37:34 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/04 23:29:25 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,12 @@ bool split_argument(char *argv, t_input *input, int **data)
         return(false);
     }
    bool errorr = check_numeric(split,0);
+//    while(split[i] != NULL)
+//    {
+//     printf("%s\n",split[i]);
+//     i++;
+//    }
+   i = 0;
    if(errorr == false)
    {
         for (int j = 0; split[j]; j++) // fix this 
@@ -235,6 +241,8 @@ bool check_numeric(char **data,int flag) {
     while (data[i]) {
         j = 0;
         while (data[i][j]) {
+            if(data[i][j] == '-' && j != 0)
+                return false;
             if ((data[i][j] < '0' || data[i][j] > '9') && data[i][j] != '-'  && data[i][j] != ' ') {
                 
                 return(false);
