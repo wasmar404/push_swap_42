@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/03 23:25:13 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/04 14:02:02 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,11 +157,10 @@ bool  check_if_sorted(t_stack *head)
     }
     return(true);
 }
-#include <stdlib.h>
 void check_numeric(char **data,int flag);
 bool split_argument(char *argv, t_input *input, int **data)
 {
-    char *charset = " \t\n\v\f\r";
+    char *charset = " \t\v";
     int i = 0;
 
     int error;
@@ -185,7 +184,7 @@ bool split_argument(char *argv, t_input *input, int **data)
         error = ft_atoi(split[i], &ftatoi);
         if(error == 0)
         {
-                for (int j = 0; split[j]; j++)
+                for (int j = 0; split[j]; j++) // fix this 
         free(split[j]);
     free(split);
     free(*data);
@@ -195,7 +194,7 @@ bool split_argument(char *argv, t_input *input, int **data)
         i++;
     }
     input->input_count = i;
-        for (int j = 0; split[j]; j++)
+        for (int j = 0; split[j]; j++) // fix this 
         free(split[j]);
     free(split);
     return (true);
@@ -255,28 +254,28 @@ int main(int argc, char **argv)
          if(error == false)
         {
             free(input);
-            write(2,"Error1",6);
+            // write(2,"Error1",6);
             exit(0);
         }
-        // stack_a = create_list_a(data,input->input_count,0);
-        // bool error3 = check_if_sorted(stack_a);
-        // if(error3 == true)
-        // {
-        //     free(input);
-        //     free(data);
-        //     free_linked_list(stack_a);
-        //     write(2,"Error2",6);
-        //     exit(0);
-        // }
-        // bool error1 = check_dup (stack_a);
-        // if(error1 == false)
-        // {
-        //     free(input);
-        //     free(data);
-        //     free_linked_list(stack_a);
-        //     write(2,"Error11",7);
-        //     exit(0);
-        // }
+        stack_a = create_list_a(data,input->input_count,0);
+        bool error3 = check_if_sorted(stack_a);
+        if(error3 == true)
+        {
+            free(input);
+            free(data);
+            free_linked_list(stack_a);
+            write(2,"Error2",6);
+            exit(0);
+        }
+        bool error1 = check_dup (stack_a);
+        if(error1 == false)
+        {
+            free(input);
+            free(data);
+            free_linked_list(stack_a);
+            write(2,"Error11",7);
+            exit(0);
+        }
     }
     else if( argc >2)
     {
@@ -309,11 +308,11 @@ int main(int argc, char **argv)
             exit(0);
         }
     }
-    //  sort(stack_a,stack_b);
+      sort(stack_a,stack_b);
     free(data);
     }
     else
     {
-        write(1,"error",5);
+        exit(0);
     }
 }
