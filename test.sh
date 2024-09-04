@@ -21,7 +21,7 @@ gcc *.c utils/*.c stack_a/*.c stack_b/*.c
 # ARG="b" "3" "2"
 # ARG="9" "6" "5 4"
 # ARG='Between 0 and 9 randomly sorted values chosen>'
-./a.out $ARG
+# ./a.out $ARG
 #  . /a.out $ARG | ./checker_linux $ARG
 # ./a.out $ARG | ./checker_linux $ARG
 # valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./a.out $ARG

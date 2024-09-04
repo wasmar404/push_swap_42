@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/04 14:02:02 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/04 21:37:34 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void sort(t_stack *stack_a, t_stack *stack_b)
 bool  check_if_sorted(t_stack *head)
 {
     while(head->next != NULL)
-    {
+    {  
         if(head->number > head->next->number)
         {
             return(false);
@@ -157,20 +157,27 @@ bool  check_if_sorted(t_stack *head)
     }
     return(true);
 }
-void check_numeric(char **data,int flag);
+bool check_numeric(char **data,int flag);
 bool split_argument(char *argv, t_input *input, int **data)
 {
     char *charset = " \t\v";
     int i = 0;
 
-    int error;
-    int ftatoi;
+    int error = 0;
+    int ftatoi = 0;
     char **split = ft_split(argv, charset);
     if(split == NULL)
     {
         return(false);
     }
-    check_numeric(split,0);
+   bool errorr = check_numeric(split,0);
+   if(errorr == false)
+   {
+        for (int j = 0; split[j]; j++) // fix this 
+            free(split[j]);
+        free(split);
+    return false;
+   }
     if (!split)
         return NULL;
     while (split[i])
@@ -217,7 +224,7 @@ bool check_dup(t_stack *head)
     }
     return true;
 }
-void check_numeric(char **data,int flag) {
+bool check_numeric(char **data,int flag) {
     
     int i = 0;
     int j;
@@ -228,60 +235,119 @@ void check_numeric(char **data,int flag) {
     while (data[i]) {
         j = 0;
         while (data[i][j]) {
-            if ((data[i][j] < '0' || data[i][j] > '9') && data[i][j] != '-') {
+            if ((data[i][j] < '0' || data[i][j] > '9') && data[i][j] != '-'  && data[i][j] != ' ') {
                 
-                write(2,"Error\n",5);
-                exit(0);
+                return(false);
             }
             j++;
         }
         i++;
     }
+    return(true);
 }
+// void free_exit(t_input *input,t_stack *stack_a , int **data , bool error)
+// {
+//     if(error == false)
+//     {
+//     free(input);
+//     free(*data);
+//     free_linked_list(stack_a);
+//     write(2,"Error\n",6);
+//     exit(0);
+//     }
+// }
+
+void one_argument(char *argv,t_stack **stack_a)
+{
+    t_input *input;
+    
+    int *data ;
+    bool error;
+    error = true;
+    input = malloc(sizeof(t_input));
+    error = split_argument(argv,input,&data);
+    if(error == false)
+    {
+        free(input);
+        printf("Error1");
+        exit(0);
+    }
+    (*stack_a) = create_list_a(data,input->input_count,0);
+    error = check_if_sorted(*stack_a);
+    if(error == true)
+    {
+        free(input);
+        free(data);
+        free_linked_list(*stack_a);
+        printf("Error2");
+        exit(0);
+    }
+   error = check_dup(*stack_a);
+    if(error == false)
+    {
+        free(input);
+        free(data);
+        free_linked_list(*stack_a);
+        printf("Error3");
+        exit(0);
+    }
+    free(data);
+    free(input);
+}
+
 int main(int argc, char **argv)
 {   
     int *data;
     bool error = true;
     t_stack *stack_a;
     t_stack *stack_b = NULL;
-    t_input *input;
+    // t_input *input;
     if(argc != 1)
     {
     if(argc == 2)
     {   
-        input = malloc(sizeof(t_input));
-       error =   split_argument(argv[1],input,&data);
-         if(error == false)
-        {
-            free(input);
-            // write(2,"Error1",6);
-            exit(0);
-        }
-        stack_a = create_list_a(data,input->input_count,0);
-        bool error3 = check_if_sorted(stack_a);
-        if(error3 == true)
-        {
-            free(input);
-            free(data);
-            free_linked_list(stack_a);
-            write(2,"Error2",6);
-            exit(0);
-        }
-        bool error1 = check_dup (stack_a);
-        if(error1 == false)
-        {
-            free(input);
-            free(data);
-            free_linked_list(stack_a);
-            write(2,"Error11",7);
-            exit(0);
-        }
+        one_argument(argv[1],&stack_a);
+        // input = malloc(sizeof(t_input));
+        // error =   split_argument(argv[1],input,&data);
+        //  if(error == false)
+        // {
+        //      free(input);
+        //     printf("Error333");
+        //     exit(0);
+        // }
+        // // stack_a = create_list_a(data,input->input_count,0);
+        // bool error3 = check_if_sorted(stack_a);
+        // if(error3 == true)
+        // {
+        //     free(input);
+        //     free(data);
+        //     free_linked_list(stack_a);
+        //     write(2,"Error2",6);
+        //     exit(0);
+        // }
+        // bool error1 = check_dup (stack_a);
+        // if(error1 == false)
+        // {
+        //     free(input);
+        //     free(data);
+        //     free_linked_list(stack_a);
+        //     write(2,"Error11",7);
+        //     exit(0);
+        // }
     }
+
+    
     else if( argc >2)
     {
         data = malloc((argc-1)*sizeof(int));
         error = create_array_with_input(argv,argc,&data);
-        check_numeric(argv,1);
+        if(error == false)
+        {
+            free(data);
+            write(2,"Error3",6);
+            exit(0);
+        }
+        error = check_numeric(argv,1);
         if(error == false)
         {
             free(data);
@@ -293,9 +359,8 @@ int main(int argc, char **argv)
          error2 = check_if_sorted(stack_a);
         if(error2 == true)
         {
-            free(input);
             free(data);
-            free_linked_list(stack_a);
+             free_linked_list(stack_a);
             write(2,"Error1",6);
             exit(0);
         }
@@ -308,8 +373,7 @@ int main(int argc, char **argv)
             exit(0);
         }
     }
-      sort(stack_a,stack_b);
-    free(data);
+     sort(stack_a,stack_b);
     }
     else
     {
