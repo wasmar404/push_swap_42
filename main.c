@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/04 23:29:25 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/05 10:48:12 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,11 +151,11 @@ bool  check_if_sorted(t_stack *head)
     {  
         if(head->number > head->next->number)
         {
-            return(false);
+            return(true);
         }
         head = head ->next;
     }
-    return(true);
+    return(false);
 }
 bool check_numeric(char **data,int flag);
 bool split_argument(char *argv, t_input *input, int **data)
@@ -171,11 +171,6 @@ bool split_argument(char *argv, t_input *input, int **data)
         return(false);
     }
    bool errorr = check_numeric(split,0);
-//    while(split[i] != NULL)
-//    {
-//     printf("%s\n",split[i]);
-//     i++;
-//    }
    i = 0;
    if(errorr == false)
    {
@@ -253,18 +248,17 @@ bool check_numeric(char **data,int flag) {
     }
     return(true);
 }
-// void free_exit(t_input *input,t_stack *stack_a , int **data , bool error)
-// {
-//     if(error == false)
-//     {
-//     free(input);
-//     free(*data);
-//     free_linked_list(stack_a);
-//     write(2,"Error\n",6);
-//     exit(0);
-//     }
-// }
-
+void one_argument_helper(t_input **input,  t_stack **stack_a,bool indicator,int **data)
+{
+    if(indicator == false)
+    {
+        free(*input);
+        free(*data);
+        free_linked_list(*stack_a);
+        printf("Error3");
+        exit(0);
+    }
+}
 void one_argument(char *argv,t_stack **stack_a)
 {
     t_input *input;
@@ -281,105 +275,97 @@ void one_argument(char *argv,t_stack **stack_a)
         exit(0);
     }
     (*stack_a) = create_list_a(data,input->input_count,0);
-    error = check_if_sorted(*stack_a);
-    if(error == true)
-    {
-        free(input);
-        free(data);
-        free_linked_list(*stack_a);
-        printf("Error2");
-        exit(0);
-    }
-   error = check_dup(*stack_a);
-    if(error == false)
-    {
-        free(input);
-        free(data);
-        free_linked_list(*stack_a);
-        printf("Error3");
-        exit(0);
-    }
+    one_argument_helper(&input,stack_a,check_if_sorted(*stack_a),&data);
+    one_argument_helper(&input,stack_a,check_dup(*stack_a),&data);
     free(data);
     free(input);
 }
-
-int main(int argc, char **argv)
-{   
+void many_arguments(t_stack **stack_a,char **argv,int argc)
+{
     int *data;
-    bool error = true;
-    t_stack *stack_a;
-    t_stack *stack_b = NULL;
-    // t_input *input;
-    if(argc != 1)
-    {
-    if(argc == 2)
-    {   
-        one_argument(argv[1],&stack_a);
-        // input = malloc(sizeof(t_input));
-        // error =   split_argument(argv[1],input,&data);
-        //  if(error == false)
-        // {
-        //      free(input);
-        //     printf("Error333");
-        //     exit(0);
-        // }
-        // // stack_a = create_list_a(data,input->input_count,0);
-        // bool error3 = check_if_sorted(stack_a);
-        // if(error3 == true)
-        // {
-        //     free(input);
-        //     free(data);
-        //     free_linked_list(stack_a);
-        //     write(2,"Error2",6);
-        //     exit(0);
-        // }
-        // bool error1 = check_dup (stack_a);
-        // if(error1 == false)
-        // {
-        //     free(input);
-        //     free(data);
-        //     free_linked_list(stack_a);
-        //     write(2,"Error11",7);
-        //     exit(0);
-        // }
-    }
+    bool error;
 
-    
-    else if( argc >2)
-    {
-        data = malloc((argc-1)*sizeof(int));
-        error = create_array_with_input(argv,argc,&data);
+    data = malloc((argc-1)*sizeof(int));
+    error = create_array_with_input(argv,argc,&data);
         if(error == false)
         {
             free(data);
             write(2,"Error3",6);
             exit(0);
         }
-        error = check_numeric(argv,1);
+    error = check_numeric(argv,1);
         if(error == false)
         {
             free(data);
             write(2,"Error3",6);
             exit(0);
         }
-       stack_a =  create_list_a(data,argc,1);
+     (*stack_a) =  create_list_a(data,argc,1);
        bool error2 = true; 
-         error2 = check_if_sorted(stack_a);
-        if(error2 == true)
+         error2 = check_if_sorted(*stack_a);
+        if(error2 == false)
         {
             free(data);
-             free_linked_list(stack_a);
+             free_linked_list(*stack_a);
             write(2,"Error1",6);
             exit(0);
         }
-               bool error1 = check_dup (stack_a);
+               bool error1 = check_dup (*stack_a);
         if(error1 == false)
         {
             free(data);
-            free_linked_list(stack_a);
+            free_linked_list(*stack_a);
             write(2,"Error2",6);
             exit(0);
         }
+        free(data);
+}
+int main(int argc, char **argv)
+{   
+    // int *data;
+    bool error = true;
+    t_stack *stack_a;
+    t_stack *stack_b = NULL;
+    if(argc != 1)
+    {
+    if(argc == 2)
+        one_argument(argv[1],&stack_a);  
+    else if( argc >2)
+    {
+        many_arguments(&stack_a,argv,argc);
+        // data = malloc((argc-1)*sizeof(int));
+        // error = create_array_with_input(argv,argc,&data);
+        // if(error == false)
+        // {
+        //     free(data);
+        //     write(2,"Error3",6);
+        //     exit(0);
+        // }
+        // error = check_numeric(argv,1);
+        // if(error == false)
+        // {
+        //     free(data);
+        //     write(2,"Error3",6);
+        //     exit(0);
+        // }
+    //    stack_a =  create_list_a(data,argc,1);
+    //    bool error2 = true; 
+    //      error2 = check_if_sorted(stack_a);
+    //     if(error2 == true)
+    //     {
+    //         free(data);
+    //          free_linked_list(stack_a);
+    //         write(2,"Error1",6);
+    //         exit(0);
+    //     }
+    //            bool error1 = check_dup (stack_a);
+    //     if(error1 == false)
+    //     {
+    //         free(data);
+    //         free_linked_list(stack_a);
+    //         write(2,"Error2",6);
+    //         exit(0);
+    //     }
     }
      sort(stack_a,stack_b);
     }
