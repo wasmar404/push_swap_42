@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/05 11:51:24 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/05 13:31:36 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,7 +294,6 @@ void one_argument(char *argv,t_stack **stack_a)
         exit(0);
     }
     one_argument_helper1(&input,stack_a,check_if_sorted(*stack_a),&data);
-    
     one_argument_helper(&input,stack_a,check_dup(*stack_a),&data);
     free(data);
     free(input);
