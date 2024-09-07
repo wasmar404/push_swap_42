@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:52:30 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 19:12:03 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 20:17:21 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,7 @@ void	many_arguments(t_stack **stack_a, char **argv, int argc)
 	error2 = true;
 	error2 = check_if_sorted(*stack_a);
 	if (error2 == false)
-	{
-		free(data);
-		free_linked_list(*stack_a);
-		exit(0);
-	}
+        free_and_exit_if_sorted(data,stack_a);
 	error1 = check_dup(*stack_a);
 	if (error1 == false)
 	{

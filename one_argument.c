@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:54:10 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 19:13:34 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 20:08:18 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,7 @@ void	one_argument(char *argv, t_stack **stack_a)
 	(*stack_a) = create_list_a(data, input->input_count, 0);
 	i = count_list(*stack_a);
 	if (i == 1)
-	{
-		free(input);
-		free(data);
-		free_linked_list(*stack_a);
-		exit(0);
-	}
+		free_and_exit_1(input, data, stack_a);
 	one_argument_helper1(&input, stack_a, check_if_sorted(*stack_a), &data);
 	one_argument_helper(&input, stack_a, check_dup(*stack_a), &data);
 	free(data);

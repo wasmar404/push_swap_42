@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:31:59 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 19:02:31 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 20:12:26 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ int	ft_atoi(char *nptr, int *ftatoi)
 	{
 		result = result * 10 + nptr[i] - '0';
 		if (result < -2147483648 || result > 2147483647)
-		{
 			return (0);
-		}
 		i++;
 	}
 	*ftatoi = (int)result * sign;
