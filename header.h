@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 20:17:14 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 20:39:27 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void				reverse_rotate_a_and_b(t_stack **stack_a, t_stack **stack_b,
 						t_stack *cheapest);
 void				put_node_on_top_a(t_stack **stack_a, t_stack *cheapest);
 void				put_node_on_top_b(t_stack **stack_b, t_stack *cheapest);
-void free_and_exit_1(t_input *input,int *data,t_stack **stack_a);
-void free_and_exit_if_sorted(int *data,t_stack **stack_a);
+void				free_and_exit_1(t_input *input, int *data,
+						t_stack **stack_a);
+void				free_and_exit_if_sorted(int *data, t_stack **stack_a);
 #endif

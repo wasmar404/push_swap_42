@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:19:50 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 20:17:24 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 20:39:16 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	free_and_exit_1(t_input *input, int *data, t_stack **stack_a)
 	exit(0);
 }
 
-void free_and_exit_if_sorted(int *data,t_stack **stack_a)
+void	free_and_exit_if_sorted(int *data, t_stack **stack_a)
 {
-   		free(data);
-		free_linked_list(*stack_a);
-		exit(0); 
+	free(data);
+	free_linked_list(*stack_a);
+	exit(0);
 }

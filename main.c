@@ -6,26 +6,29 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 20:17:53 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 20:39:38 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void set_pos_and_median_if_even(t_stack *head,int list_size)
+void	set_pos_and_median_if_even(t_stack *head, int list_size)
 {
-    int i = 1;
-    while (head != NULL)
-		{
-			head->position = i;
-			if (i <= list_size / 2)
-				head->median = 1;
-			else
-				head->median = 0;
-			head = head->next;
-			i++;
-		}
+	int	i;
+
+	i = 1;
+	while (head != NULL)
+	{
+		head->position = i;
+		if (i <= list_size / 2)
+			head->median = 1;
+		else
+			head->median = 0;
+		head = head->next;
+		i++;
+	}
 }
+
 void	set_pos_and_median(t_stack *head)
 {
 	int	i;
@@ -47,9 +50,8 @@ void	set_pos_and_median(t_stack *head)
 		}
 	}
 	else
-        set_pos_and_median_if_even(head,list_size);
+		set_pos_and_median_if_even(head, list_size);
 }
-
 
 t_stack	*find_max_pointer(t_stack *head)
 {
