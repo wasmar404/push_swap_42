@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:54:10 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 16:31:16 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 18:20:10 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,38 +75,8 @@ bool split_argument(char *argv, t_input *input, int **data)
     free_2d_array(split);
     return (true);
 }
-void free_2d_array(char **data)
-{
-    int i;
-    i = 0;
-    while(data[i])
-    {
-        free(data[i]);
-        i++;
-    }
-    free(data);
-}
-void one_argument_helper(t_input **input,  t_stack **stack_a,bool indicator,int **data)
-{
-    if(indicator == false)
-    {
-        free(*input);
-        free(*data);
-        free_linked_list(*stack_a);
-        write(2,"Error\n",5);
-        exit(0);
-    }
-}
-void one_argument_helper1(t_input **input,  t_stack **stack_a,bool indicator,int **data)
-{
-    if(indicator == false)
-    {
-        free(*input);
-        free(*data);
-        free_linked_list(*stack_a);
-        exit(0);
-    }
-}
+
+
 void one_argument(char *argv,t_stack **stack_a)
 {
     t_input *input;
