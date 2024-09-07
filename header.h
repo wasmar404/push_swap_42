@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 18:50:52 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 18:54:15 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void rra(t_stack **head,int flag);
 void rrb(t_stack **head,int flag);
 void rb(t_stack **head,int flag);
 void sb(t_stack **head,int flag);
+void many_args_error(int *data,bool error);
+void many_arguments(t_stack **stack_a,char **argv,int argc);
 void pb(t_stack **head_a, t_stack **head_b);
 void rr(t_stack **head_a, t_stack **head_b);
 void rrr(t_stack **head_a,t_stack **head_b);
