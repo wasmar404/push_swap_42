@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 15:29:40 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 15:52:12 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,56 +157,56 @@ bool  check_if_sorted(t_stack *head)
     }
     return(false);
 }
-bool check_numeric(char **data,int flag);
-bool split_argument(char *argv, t_input *input, int **data)
-{
-    char *charset = " \t\v";
-    int i = 0;
+// bool check_numeric(char **data,int flag);
+// bool split_argument(char *argv, t_input *input, int **data)
+// {
+//     char *charset = " \t\v";
+//     int i = 0;
 
-    int error = 0;
-    int ftatoi = 0;
-    char **split = ft_split(argv, charset);
-     if(split == NULL)
-    {
-        return(false);
-    }
-   bool errorr = check_numeric(split,0);
-   i = 0;
-   if(errorr == false)
-   {
-        for (int j = 0; split[j]; j++) // fix this
-            free(split[j]);
-        free(split);
-    return false;
-   }
-    if (!split)
-        return NULL;
-    while (split[i])
-        i++;
-    *data = (int *)malloc(sizeof(int) * i);
-    if (!data)
-        return NULL;
-    i = 0;
-    while (split[i])
-    {
-        error = ft_atoi(split[i], &ftatoi);
-        if(error == 0)
-        {
-                for (int j = 0; split[j]; j++) // fix this 
-        free(split[j]);
-    free(split);
-    free(*data);
-            return (false);
-        }
-        (*data)[i] = ftatoi;
-        i++;
-    }
-    input->input_count = i;
-        for (int j = 0; split[j]; j++) // fix this 
-        free(split[j]);
-    free(split);
-    return (true);
-}
+//     int error = 0;
+//     int ftatoi = 0;
+//     char **split = ft_split(argv, charset);
+//      if(split == NULL)
+//     {
+//         return(false);
+//     }
+//    bool errorr = check_numeric(split,0);
+//    i = 0;
+//    if(errorr == false)
+//    {
+//         for (int j = 0; split[j]; j++) // fix this
+//             free(split[j]);
+//         free(split);
+//     return false;
+//    }
+//     if (!split)
+//         return NULL;
+//     while (split[i])
+//         i++;
+//     *data = (int *)malloc(sizeof(int) * i);
+//     if (!data)
+//         return NULL;
+//     i = 0;
+//     while (split[i])
+//     {
+//         error = ft_atoi(split[i], &ftatoi);
+//         if(error == 0)
+//         {
+//                 for (int j = 0; split[j]; j++) // fix this 
+//         free(split[j]);
+//     free(split);
+//     free(*data);
+//             return (false);
+//         }
+//         (*data)[i] = ftatoi;
+//         i++;
+//     }
+//     input->input_count = i;
+//         for (int j = 0; split[j]; j++) // fix this 
+//         free(split[j]);
+//     free(split);
+//     return (true);
+// }
 bool check_dup(t_stack *head)
 {
     t_stack *temp;
