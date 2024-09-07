@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 15:52:12 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 18:50:29 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,54 +42,8 @@ void set_pos_and_median(t_stack *head)
 	}
     }
 }
-void rotate_a_and_b(t_stack **stack_a, t_stack **stack_b,t_stack *cheap)
-{	
-	while (cheap->position != 1 && cheap->target->position != 1)
-	{
-		rr(stack_a,stack_b);
-    set_pos_and_median(*stack_a);
-    set_pos_and_median(*stack_b);
-	}
-}
-void reverse_rotate_a_and_b(t_stack **stack_a,t_stack **stack_b,t_stack *cheapest)
-{
-	while (cheapest->position != 1 && cheapest->target->position != 1)
-	{
-		rrr(stack_a,stack_b);
-    set_pos_and_median(*stack_a);
-    set_pos_and_median(*stack_b);
-	}
-}
 
 
- void put_node_on_top_a(t_stack **stack_a,t_stack *cheapest)
-{
-	while (cheapest ->position != 1)
-	{
-		if(cheapest->median == 1)
-		{
-			ra(stack_a,1);
-		}
-		else
-			rra(stack_a,1);
-        set_pos_and_median(*stack_a);
-
-	}
-}
- void put_node_on_top_b(t_stack **stack_b,t_stack *cheapest)
-{
-	while (cheapest ->target ->position != 1)
-	{
-		if(cheapest->target->median == 1)
-		{
-			 rb(stack_b,1);
-          
-		}
-		else
-			rrb(stack_b,1);
-        set_pos_and_median(*stack_b);
-	}        
-}
     
 t_stack *find_max_pointer(t_stack *head)
 {
@@ -102,152 +56,8 @@ t_stack *find_max_pointer(t_stack *head)
     }
     return(max);
 }
-void sort_h(t_stack **stack_a, t_stack **stack_b)
-{
-            set_pos_and_median(*stack_a);
-        set_pos_and_median(*stack_b);
-        set_target_of_a(*stack_a,*stack_b);
-        find_cost(*stack_a);
-        find_cost(*stack_b);
-        add_cost_of_a_and_b(*stack_a,stack_b);
-}
-void sort_max(t_stack **stack_b)
-{
-        t_stack *max = find_max_pointer(*stack_b);
-    set_pos_and_median(*stack_b);
-    while (max ->position != 1)
-    {
-        if(max ->median == 1)
-            rb(stack_b,1);
-        else if(max ->median == 0)
-            rrb(stack_b,1);
-        set_pos_and_median(*stack_b);
-    }
-}
-void sort(t_stack *stack_a, t_stack *stack_b)
-{
-    pb(&stack_a,&stack_b);
-    pb(&stack_a,&stack_b);
-    while (count_list(stack_a) > 0)
-    {
-        sort_h(&stack_a,&stack_b);
-        t_stack *cheap = find_cheapest_node(stack_a);
-        if(cheap->median == 1 && cheap->target->median == 1) 
-            rotate_a_and_b(&stack_a,&stack_b,cheap);
-        else if(cheap->median == 0 && cheap->target->median == 0)
-            reverse_rotate_a_and_b(&stack_a,&stack_b,cheap);
-        put_node_on_top_a(&stack_a,cheap);
-        put_node_on_top_b(&stack_b,cheap);
-        pb(&stack_a,&stack_b);
-    }
-    sort_max(&stack_b);
-    while (stack_b != NULL)
-        pa(&stack_b,&stack_a);
-    free_linked_list(stack_a);
-}
-bool  check_if_sorted(t_stack *head)
-{
-    while(head->next != NULL)
-    {  
-        if(head->number > head->next->number)
-        {
-            return(true);
-        }
-        head = head ->next;
-    }
-    return(false);
-}
-// bool check_numeric(char **data,int flag);
-// bool split_argument(char *argv, t_input *input, int **data)
-// {
-//     char *charset = " \t\v";
-//     int i = 0;
 
-//     int error = 0;
-//     int ftatoi = 0;
-//     char **split = ft_split(argv, charset);
-//      if(split == NULL)
-//     {
-//         return(false);
-//     }
-//    bool errorr = check_numeric(split,0);
-//    i = 0;
-//    if(errorr == false)
-//    {
-//         for (int j = 0; split[j]; j++) // fix this
-//             free(split[j]);
-//         free(split);
-//     return false;
-//    }
-//     if (!split)
-//         return NULL;
-//     while (split[i])
-//         i++;
-//     *data = (int *)malloc(sizeof(int) * i);
-//     if (!data)
-//         return NULL;
-//     i = 0;
-//     while (split[i])
-//     {
-//         error = ft_atoi(split[i], &ftatoi);
-//         if(error == 0)
-//         {
-//                 for (int j = 0; split[j]; j++) // fix this 
-//         free(split[j]);
-//     free(split);
-//     free(*data);
-//             return (false);
-//         }
-//         (*data)[i] = ftatoi;
-//         i++;
-//     }
-//     input->input_count = i;
-//         for (int j = 0; split[j]; j++) // fix this 
-//         free(split[j]);
-//     free(split);
-//     return (true);
-// }
-bool check_dup(t_stack *head)
-{
-    t_stack *temp;
-    while (head != NULL)
-    {
-        temp = head->next;
-        while (temp != NULL)
-        {
-            if(temp->number == head->number)
-            {
-                return false;
-            }
-            temp = temp->next;
-        }
-        head = head->next;
-    }
-    return true;
-}
-bool check_numeric(char **data,int flag) {
-    
-    int i = 0;
-    int j;
-    if(flag == 1)
-    {
-        i =1;
-    }
-    while (data[i]) {
-        j = 0;
-        while (data[i][j]) {
-            if(data[i][j] == '-' && j != 0)
-                return false;
-            if ((data[i][j] < '0' || data[i][j] > '9') && data[i][j] != '-'  && data[i][j] != ' ') {
-                
-                return(false);
-            }
-            j++;
-        }
-        i++;
-    }
-    return(true);
-}
+
 
 
 void many_args_error(int *data,bool error)

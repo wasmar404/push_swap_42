@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 18:20:53 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 18:50:52 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ bool  check_if_sorted(t_stack *head);
 bool create_array_with_input(char **input,int count,int **data);
 int	ft_atoi(char *nptr,int *ftatoi);
 bool check_dup(t_stack *head);
+void set_pos_and_median(t_stack *head);
+t_stack *find_max_pointer(t_stack *head);
+bool  check_if_sorted(t_stack *head);
+bool check_dup(t_stack *head);
+bool check_numeric(char **data,int flag);
 ///////////////////////
 void one_argument(char *argv,t_stack **stack_a);
 char	**ft_split(char *str, char *charset);
@@ -72,4 +77,11 @@ void sb(t_stack **head,int flag);
 void pb(t_stack **head_a, t_stack **head_b);
 void rr(t_stack **head_a, t_stack **head_b);
 void rrr(t_stack **head_a,t_stack **head_b);
+void sort(t_stack *stack_a, t_stack *stack_b);
+void sort_max(t_stack **stack_b);
+void sort_h(t_stack **stack_a, t_stack **stack_b);
+void rotate_a_and_b(t_stack **stack_a, t_stack **stack_b,t_stack *cheap);
+void reverse_rotate_a_and_b(t_stack **stack_a,t_stack **stack_b,t_stack *cheapest);
+ void put_node_on_top_a(t_stack **stack_a,t_stack *cheapest);
+  void put_node_on_top_b(t_stack **stack_b,t_stack *cheapest);
 #endif
