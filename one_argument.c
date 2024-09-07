@@ -6,51 +6,71 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:54:10 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 16:15:39 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 16:31:16 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-void free_2d_array(char **data);
-bool split_argument(char *argv, t_input *input, int **data)
+bool split_argument_helper(char *argv,char ***split)
 {
-    char *charset = " \t\v";
-    int i = 0;
-
-    int error = 0;
-    int ftatoi = 0;
-    char **split = ft_split(argv, charset);
-     if(split == NULL)
-    {
-        return(false);
-    }
-   bool errorr = check_numeric(split,0);
-   i = 0;
+        char *charset;
+        charset = " \t\v";
+        (*split) = ft_split(argv, charset);
+        if(split == NULL)
+         return(false);
+     bool errorr = check_numeric(*split,0);
    if(errorr == false)
    {
-        free_2d_array(split);
+        free_2d_array(*split);
     return false;
    }
-    if (!split)
-        return NULL;
-    while (split[i])
-        i++;
-    *data = (int *)malloc(sizeof(int) * i);
-    if (!data)
-        return NULL;
+
+return true;
+}
+int count_input(char **data)
+{
+    int i;
     i = 0;
-    while (split[i])
+    while (data[i])
+    {
+        i++;
+    }
+    return i;
+    
+}
+bool split_argument_helper_1(char **split,int **data)
+{
+    int i = 0;
+    int error = 0;
+    int ftatoi = 0;
+     while (split[i])
     {
         error = ft_atoi(split[i], &ftatoi);
         if(error == 0)
         {
                 free_2d_array(split);
-    free(*data);
+                 free(*data);
             return (false);
         }
         (*data)[i] = ftatoi;
         i++;
-    }
+    } 
+    return true;  
+}
+bool split_argument(char *argv, t_input *input, int **data)
+{
+    int i;
+    int error = 0;
+    int ftatoi = 0;
+    char **split;
+    if(split_argument_helper(argv,&split) == false)
+        return (false);
+    *data = (int *)malloc(sizeof(int) * (count_input(split)));
+    if (!data)
+        return NULL;
+    i = 0;
+    if(!split_argument_helper_1(split,data))
+        return false;
     input->input_count = i;
     free_2d_array(split);
     return (true);

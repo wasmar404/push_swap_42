@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 15:53:45 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 16:17:04 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int count_list(t_stack *temp);
 bool check_numeric(char **data,int flag);
 ///////////////////////////////
 void find_cost(t_stack *head);
+void free_2d_array(char **data);
 //voidlinked_list.c
 void set_target_of_a(t_stack *stack_a, t_stack *stack_b);
 void free_linked_list(t_stack *node);
