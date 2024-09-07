@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/03 22:15:53 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 15:31:40 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,13 @@ void push(t_stack **send_form , t_stack **send_to);
 /////////////////////
 t_stack *find_cheapest_node(t_stack *head);
 //int
-
+bool split_argument(char *argv, t_input *input, int **data);
+bool  check_if_sorted(t_stack *head);
 bool create_array_with_input(char **input,int count,int **data);
 int	ft_atoi(char *nptr,int *ftatoi);
+bool check_dup(t_stack *head);
 ///////////////////////
+void one_argument(char *argv,t_stack **stack_a);
 char	**ft_split(char *str, char *charset);
 void sa(t_stack **head,int flag);
 void pa(t_stack **head_a, t_stack **head_b);
