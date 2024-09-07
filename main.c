@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/05 13:31:36 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/06 09:56:18 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -298,28 +298,27 @@ void one_argument(char *argv,t_stack **stack_a)
     free(data);
     free(input);
 }
+
+void many_args_error(int *data,bool error)
+{
+        if(error == false)
+        {
+            free(data);
+            write(2,"Error3",6);
+            exit(0);
+        } 
+}
 void many_arguments(t_stack **stack_a,char **argv,int argc)
 {
     int *data;
     bool error;
 
     data = malloc((argc-1)*sizeof(int));
-    error = create_array_with_input(argv,argc,&data);
-        if(error == false)
-        {
-            free(data);
-            write(2,"Error3",6);
-            exit(0);
-        }
-    error = check_numeric(argv,1);
-        if(error == false)
-        {
-            free(data);
-            write(2,"Error3",6);
-            exit(0);
-        }
+    many_args_error(data,create_array_with_input(argv,argc,&data));
+    many_args_error(data,check_numeric(argv,1));
      (*stack_a) =  create_list_a(data,argc,1);
        bool error2 = true; 
+       
          error2 = check_if_sorted(*stack_a);
         if(error2 == false)
         {
