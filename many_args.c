@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:52:30 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 20:39:52 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/07 20:52:25 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	many_args_error(int *data, bool error)
 	if (error == false)
 	{
 		free(data);
-		write(2, "Error3", 6);
+		write(2, "Error\n", 6);
 		exit(0);
 	}
 }
@@ -42,7 +42,7 @@ void	many_arguments(t_stack **stack_a, char **argv, int argc)
 	{
 		free(data);
 		free_linked_list(*stack_a);
-		write(2, "Error2", 6);
+		write(2, "Error\n", 6);
 		exit(0);
 	}
 	free(data);
