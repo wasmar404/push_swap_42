@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:05:23 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 20:52:56 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/13 10:44:26 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_stack	*create_new_node(int number)
 	new_node->number = number;
 	new_node->next = NULL;
 	new_node->prev = NULL;
+	return (new_node);
 }
 
 /*
@@ -49,6 +50,16 @@ void	free_linked_list(t_stack *node)
 		temp = node->next;
 		free(node);
 		node = temp;
+	}
+}
+
+
+void	print_stack(t_stack *head)
+{
+	while (head != NULL)
+	{
+		printf("%d ", head->number);
+		head = head->next;
 	}
 }
 

@@ -1,5 +1,5 @@
 #!/bin/bash
- gcc *.c utils/*.c stack_a/*.c stack_b/*.c
+ gcc *.c utils/*.c stack_a/*.c stack_b/*.c -Wall -Wextra -Werror -o a
 # ARG=7 6 5
 # ARG="7 6 5"
 # ARG="7" "6" "5"

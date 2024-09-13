@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 20:53:01 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/13 10:26:15 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,14 @@ void				one_argument_helper1(t_input **input, t_stack **stack_a,
 void				set_target_of_a(t_stack *stack_a, t_stack *stack_b);
 void				free_linked_list(t_stack *node);
 void				return_pointer_to_first(t_stack **node);
+void				print_stack(t_stack *head);
 void				free_2d_array(char **data);
 void				swap(t_stack **head);
 void				rotate(t_stack **head);
 void				reverse_rotate(t_stack **head);
 void				push(t_stack **send_form, t_stack **send_to);
 t_stack				*find_cheapest_node(t_stack *head);
-bool				split_argument(char *argv, t_input *input, int **data);
+bool				split_argument(char *argv, t_input **input, int **data);
 bool				check_if_sorted(t_stack *head);
 bool				create_array_with_input(char **input, int count,
 						int **data);
@@ -88,4 +89,7 @@ void				put_node_on_top_b(t_stack **stack_b, t_stack *cheapest);
 void				free_and_exit_1(t_input *input, int *data,
 						t_stack **stack_a);
 void				free_and_exit_if_sorted(int *data, t_stack **stack_a);
+void	sort_3_nodes(t_stack **stack);
+void	sort_4_numbers(t_stack **a, t_stack **b);
+void sort_5_num(t_stack **a, t_stack **b);
 #endif
