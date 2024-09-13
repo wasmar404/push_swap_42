@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/13 12:20:33 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/13 13:05:18 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,13 @@ int	main(int argc, char **argv)
 
 void	main_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	if (count_list(*stack_a) == 3)
+	if (count_list(*stack_a) == 2)
+	{
+		sort_2(stack_a);
+		free_linked_list(*stack_a);
+		free_linked_list(*stack_b);
+	}
+	else if (count_list(*stack_a) == 3)
 	{
 		sort_3_nodes(stack_a);
 		free_linked_list(*stack_a);

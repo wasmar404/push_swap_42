@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:54:10 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/13 11:35:19 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/13 13:22:58 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	one_argument(char *argv, t_stack **stack_a)
 	if (error == false)
 	{
 		free(input);
-		printf("Error");
+		write(2,"Error\n",5);
 		exit(0);
 	}
 	(*stack_a) = create_list_a(data, input->input_count, 0);

@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:40:19 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/13 12:20:24 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/13 13:04:26 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,9 @@ void	sort_5_num(t_stack **a, t_stack **b)
 	pb(a, b);
 	sort_4_numbers(a, b);
 	pa(a, b);
+}
+void sort_2(t_stack **a)
+{
+	if((*a)->number > (*a)->next->number)
+		ra(a,1);
 }
