@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/13 11:04:06 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/13 12:20:42 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int					ft_atoi(char *nptr, int *ftatoi);
 bool				check_dup(t_stack *head);
 void				set_pos_and_median(t_stack *head);
 t_stack				*find_max_pointer(t_stack *head);
+void				main_sort(t_stack **stack_a, t_stack **stack_b);
 bool				check_if_sorted(t_stack *head);
 bool				check_dup(t_stack *head);
 bool				check_numeric(char **data, int flag);

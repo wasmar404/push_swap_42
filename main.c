@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/13 11:03:48 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/13 12:20:33 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,34 @@ int	main(int argc, char **argv)
 			one_argument(argv[1], &stack_a);
 		else if (argc > 2)
 			many_arguments(&stack_a, argv, argc);
-		if (count_list(stack_a) == 3)
-		{
-			sort_3_nodes(&stack_a);
-		}
-		else if (count_list(stack_a) == 4)
-			sort_4_numbers(&stack_a, &stack_b);
-		else if (count_list(stack_a) == 5)
-			sort_5_num(&stack_a, &stack_b);
-		else
-			sort(stack_a, stack_b);
+		main_sort(&stack_a, &stack_b);
 	}
 	else
 	{
 		exit(0);
 	}
+}
+
+void	main_sort(t_stack **stack_a, t_stack **stack_b)
+{
+	if (count_list(*stack_a) == 3)
+	{
+		sort_3_nodes(stack_a);
+		free_linked_list(*stack_a);
+		free_linked_list(*stack_b);
+	}
+	else if (count_list(*stack_a) == 4)
+	{
+		sort_4_numbers(stack_a, stack_b);
+		free_linked_list(*stack_a);
+		free_linked_list(*stack_b);
+	}
+	else if (count_list(*stack_a) == 5)
+	{
+		sort_5_num(stack_a, stack_b);
+		free_linked_list(*stack_a);
+		free_linked_list(*stack_b);
+	}
+	else
+		sort(*stack_a, *stack_b);
 }

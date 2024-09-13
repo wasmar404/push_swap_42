@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:40:19 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/13 11:02:47 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/13 12:20:24 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	sort_4_numbers(t_stack **a, t_stack **b)
 {
 	t_stack	*min;
 
+	set_pos_and_median(*a);
 	min = find_smallest(*a);
 	while (min->position != 1)
 	{
