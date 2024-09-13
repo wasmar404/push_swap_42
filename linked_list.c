@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:05:23 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/13 10:44:26 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/13 11:04:19 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ t_stack	*create_new_node(int number)
 	return (new_node);
 }
 
-/*
- */
-
 void	return_pointer_to_first(t_stack **node)
 {
 	while ((*node)->prev != NULL)
@@ -39,8 +36,6 @@ void	return_pointer_to_first(t_stack **node)
 	}
 }
 
-/*
- */
 void	free_linked_list(t_stack *node)
 {
 	t_stack	*temp;
@@ -52,7 +47,6 @@ void	free_linked_list(t_stack *node)
 		node = temp;
 	}
 }
-
 
 void	print_stack(t_stack *head)
 {

@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:31:59 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/07 20:12:26 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/13 11:06:26 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,16 @@ int	ft_atoi(char *nptr, int *ftatoi)
 {
 	int			i;
 	int			sign;
-	int			indi;
 	long long	result;
 
 	i = 0;
 	sign = 1;
-	indi = 0;
 	result = 0;
 	while (nptr[i] == '+' || nptr[i] == '-')
 	{
 		if (nptr[i] == '-')
 			sign *= -1;
-		indi++;
-		if (indi > 1 || nptr[i] == '+')
+		if (nptr[i] == '+')
 			return (0);
 		i++;
 	}

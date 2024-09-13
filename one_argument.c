@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:54:10 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/13 10:45:12 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/13 11:03:12 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ bool	split_argument_helper_1(char **split, int **data)
 bool	split_argument(char *argv, t_input **input, int **data)
 {
 	char	**split;
-
 
 	if (split_argument_helper(argv, &split) == false)
 		return (false);
