@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:54:10 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/13 13:22:58 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/16 11:47:12 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,19 @@ bool	split_argument(char *argv, t_input **input, int **data)
 	free_2d_array(split);
 	return (true);
 }
-
+void check_negative(char *argv)
+{
+	int i = 0;
+	while(argv[i])
+	{
+		if(argv[i] == '-' && (argv[i+1] < '0' || argv[i+1] > '9'))
+		{
+			write(2,"Error\n",6);
+			exit(0);
+		}
+		i++;
+	}
+}
 void	one_argument(char *argv, t_stack **stack_a)
 {
 	t_input	*input;
@@ -90,6 +102,8 @@ void	one_argument(char *argv, t_stack **stack_a)
 	int		i;
 
 	error = true;
+	check_space_and_null(argv);
+	check_negative(argv);
 	input = malloc(sizeof(t_input));
 	error = split_argument(argv, &input, &data);
 	if (error == false)
@@ -102,8 +116,29 @@ void	one_argument(char *argv, t_stack **stack_a)
 	i = count_list(*stack_a);
 	if (i == 1)
 		free_and_exit_1(input, data, stack_a);
-	one_argument_helper1(&input, stack_a, check_if_sorted(*stack_a), &data);
 	one_argument_helper(&input, stack_a, check_dup(*stack_a), &data);
+	one_argument_helper1(&input, stack_a, check_if_sorted(*stack_a), &data);
 	free(data);
 	free(input);
+}
+void check_space_and_null(char *argv)
+{
+	int i;
+	int j;
+	
+	i =0;
+	j = 0;
+	while(argv[i])
+	{
+		if(argv[i] != ' ')
+		{
+			j++;
+		}
+		i++;
+	}
+	if(j == 0)
+	{
+		write(2,"Error\n",6);
+		exit(0);
+	}
 }

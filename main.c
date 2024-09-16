@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/13 13:05:18 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/16 11:22:52 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,30 @@ void	main_sort(t_stack **stack_a, t_stack **stack_b)
 	}
 	else
 		sort(*stack_a, *stack_b);
+}
+
+bool check_av(char **av)
+{	
+	int i;
+	int j;
+	int number;
+	
+	i = 1;
+	while (av[i])
+	{
+		j = 0;
+		number = 0; 
+		while (av[i][j])
+		{
+			if (av[i][j] >= '0' && av[i][j] <= '9')
+			{
+				if (number > 0 && av[i][j-1] == ' ')
+					return false;
+				number++;
+			}
+			j++;
+		}
+		i++;
+	}
+	return true;
 }
