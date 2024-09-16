@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:52:30 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/15 21:09:06 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/16 11:57:01 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ void	many_args_error(int *data, bool error)
 		exit(0);
 	}
 }
-void check_av_helper(char **av)
+
+void	check_av_helper(char **av)
 {
-		if(check_av(av) == false)
+	if (check_av(av) == false)
 	{
-		write(2,"Error",5);
+		write(2, "Error", 5);
 		exit(0);
 	}
 }
+
 void	many_arguments(t_stack **stack_a, char **argv, int argc)
 {
 	bool	error2;

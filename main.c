@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:33 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/16 11:22:52 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/16 12:01:48 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,58 +87,28 @@ int	main(int argc, char **argv)
 	}
 }
 
-void	main_sort(t_stack **stack_a, t_stack **stack_b)
+bool	check_av(char **av)
 {
-	if (count_list(*stack_a) == 2)
-	{
-		sort_2(stack_a);
-		free_linked_list(*stack_a);
-		free_linked_list(*stack_b);
-	}
-	else if (count_list(*stack_a) == 3)
-	{
-		sort_3_nodes(stack_a);
-		free_linked_list(*stack_a);
-		free_linked_list(*stack_b);
-	}
-	else if (count_list(*stack_a) == 4)
-	{
-		sort_4_numbers(stack_a, stack_b);
-		free_linked_list(*stack_a);
-		free_linked_list(*stack_b);
-	}
-	else if (count_list(*stack_a) == 5)
-	{
-		sort_5_num(stack_a, stack_b);
-		free_linked_list(*stack_a);
-		free_linked_list(*stack_b);
-	}
-	else
-		sort(*stack_a, *stack_b);
-}
+	int	i;
+	int	j;
+	int	number;
 
-bool check_av(char **av)
-{	
-	int i;
-	int j;
-	int number;
-	
 	i = 1;
 	while (av[i])
 	{
 		j = 0;
-		number = 0; 
+		number = 0;
 		while (av[i][j])
 		{
 			if (av[i][j] >= '0' && av[i][j] <= '9')
 			{
-				if (number > 0 && av[i][j-1] == ' ')
-					return false;
+				if (number > 0 && av[i][j - 1] == ' ')
+					return (false);
 				number++;
 			}
 			j++;
 		}
 		i++;
 	}
-	return true;
+	return (true);
 }

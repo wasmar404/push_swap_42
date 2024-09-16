@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:04:37 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/15 21:15:13 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/16 12:01:58 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ typedef struct t_input
 {
 	int				input_count;
 }					t_input;
-void sort_2(t_stack **a);
-bool check_av(char **av);
-void check_space_and_null(char *argv);
+void				sort_2(t_stack **a);
+void				check_negative(char *argv);
+bool				check_av(char **av);
+void				check_space_and_null(char *argv);
 t_stack				*create_new_node(int number);
 t_stack				*create_list_a(int *input, int count, int flag);
 void				add_cost_of_a_and_b(t_stack *stack_a, t_stack **stack_b);
