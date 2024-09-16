@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:57:25 by wasmar            #+#    #+#             */
-/*   Updated: 2024/09/16 12:12:38 by wasmar           ###   ########.fr       */
+/*   Updated: 2024/09/16 20:24:48 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,27 @@ void	check_space_and_null(char *argv)
 	}
 }
 
-void	main_sort_h(t_stack **stack_a)
+void	main_sort_h(t_stack ***stack_a, t_stack ***stack_b)
 {
-	if (count_list(*stack_a) == 2)
+	if (count_list(**stack_a) == 2)
 	{
-		sort_2(stack_a);
+		sort_2(*stack_a);
+		free_linked_list(**stack_a);
+		free_linked_list(**stack_b);
 	}
-	else if (count_list(*stack_a) == 3)
+	else if (count_list(**stack_a) == 3)
 	{
-		sort_3_nodes(stack_a);
+		sort_3_nodes(*stack_a);
+		free_linked_list(**stack_a);
+		free_linked_list(**stack_b);
 	}
 }
 
 void	main_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	main_sort_h(stack_a);
-	if (count_list(*stack_a) == 4)
+	if (count_list(*stack_a) == 3 || count_list(*stack_a) == 2)
+		main_sort_h(&stack_a, &stack_b);
+	else if (count_list(*stack_a) == 4)
 	{
 		sort_4_numbers(stack_a, stack_b);
 		free_linked_list(*stack_a);
